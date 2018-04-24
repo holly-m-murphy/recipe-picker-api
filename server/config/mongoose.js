@@ -13,13 +13,26 @@ module.exports = {
         return dbo.close()
     },
     insertOneRecipe: async function (dbo, recipe) {
+        console.log(`inserting recipe`)
         return await dbo.collection("recipes").insertOne(recipe)
 
-        // dbo.collection("recipes").insertOne(recipe, function (err, res) {
+        // let response = await dbo.collection("recipes").insertOne(recipe, function (err, res) {
         //     if (err) throw err;
-        //     console.log(`1 document inserted`)
+        //     console.log(`1 document inserted`, dbo)
         // })
+
+        // return response
+    },
+    findAll: async function (dbo) {
+        //console.log(await dbo.collection("recipes").find().toArray())
+        const result = await dbo.collection("recipes").find({}).toArray()
+        //console.log(`result: `, result)
+        return { ok: true, result }
+
+
     }
 }
+
+
 
 
