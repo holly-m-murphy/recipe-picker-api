@@ -2,6 +2,7 @@
 
 var addCntrl = require('./../controllers/add-recipe')
 var findCntrl = require('./../controllers/find-recipe')
+var recipesCntrl = require('./../controllers/fetch-recipes')
 
 
 module.exports = function (app) {
@@ -26,6 +27,11 @@ module.exports = function (app) {
 
 
             })
+            res.send(response)
+        }),
+        app.get('/fetch-recipes', async function (req, res) {
+            const response = await recipesCntrl.fetchRecipes(req, res, app.locals.db.dbo)
+            console.log(`response in routes! `, response)
             res.send(response)
         })
 

@@ -4,5 +4,8 @@
     "less-middleware": "^2.2.1",
     "mongoose": "^5.0.0-rc0",
     "path": "^0.12.7"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
