@@ -17,7 +17,6 @@ describe("add-recipe controller: ", async () => {
         const dbo = "something", res = "something-else"
 
         const result = await add.addRecipe(req, res, dbo)
-        console.log(`result: `, result)
 
         expect(result.status).toEqual(200)
         expect(result.data).toEqual("something is returned")
