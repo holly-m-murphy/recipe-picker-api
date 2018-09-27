@@ -3,7 +3,6 @@ var db = require("./../config/mongoose")
 
 module.exports = {
     findById: async function (req, res, dbo) {
-        console.log(`id: `, req.body)
         const id = req.body.id
 
         const searchResult = await db.findById(dbo, id)

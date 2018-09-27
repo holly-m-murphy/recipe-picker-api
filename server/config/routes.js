@@ -12,7 +12,6 @@ module.exports = function (app) {
     })
     app.post('/add-recipe', async function (req, res) {
         const response = await addCntrl.addRecipe(req, res, app.locals.db.dbo)
-        console.log(`response in routes -- add res.send()`, response.data)
         await app.locals.db.client.close((err, res) => {
             console.log(`mongodb is closed!`)
         })
