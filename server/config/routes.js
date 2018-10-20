@@ -3,6 +3,7 @@
 var addCntrl = require('./../controllers/add-recipe')
 var findCntrl = require('./../controllers/find-recipe')
 var recipesCntrl = require('./../controllers/fetch-recipes')
+var removeRecipeCntrl = require('./../controllers/delete-recipe')
 
 
 module.exports = function (app) {
@@ -13,7 +14,7 @@ module.exports = function (app) {
     app.post('/add-recipe', async function (req, res) {
         const response = await addCntrl.addRecipe(req, res, app.locals.db.dbo)
         await app.locals.db.client.close((err, res) => {
-            console.log(`mongodb is closed!`)
+           
         })
 
     }),
@@ -22,7 +23,7 @@ module.exports = function (app) {
 
 
             await app.locals.db.client.close((err, res) => {
-                console.log(`mongodb is closed!`)
+                
 
 
             })
@@ -30,6 +31,10 @@ module.exports = function (app) {
         }),
         app.get('/fetch-recipes', async function (req, res) {
             const response = await recipesCntrl.fetchRecipes(req, res, app.locals.db.dbo)
+            res.send(response)
+        }),
+        app.delete('/remove-recipe', async function(req, res){
+            const response = await removeRecipeCntrl.removeRecipe(req, res, app.locals.db.dbo)
             console.log(`response in routes! `, response)
             res.send(response)
         })

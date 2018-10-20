@@ -13,12 +13,16 @@ const insertOneRecipe = async (dbo, recipe) => {
     return await dbo.collection("recipes").insertOne(recipe)
 }
 
+const removeOneRecipe = async (dbo, title) =>{
+    return await dbo.collection("recipes").removeOne({"title":title})
+}
+
 const findAll = async (dbo) => {
     const result = await dbo.collection("recipes").find({}).toArray()
     return { ok: true, result }
 }
 
-export { connect, closeDbConnection, insertOneRecipe, findAll }
+export { connect, closeDbConnection, insertOneRecipe, findAll, removeOneRecipe }
 
 
 
