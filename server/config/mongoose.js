@@ -1,4 +1,5 @@
 import MongoClient from "mongodb"
+import AWS from "aws-sdk"
 
 const connect = async () => {
     const mc = await MongoClient.connect("mongodb://localhost:27017/recipe-picker")
@@ -21,6 +22,7 @@ const findAll = async (dbo) => {
     const result = await dbo.collection("recipes").find({}).toArray()
     return { ok: true, result }
 }
+
 
 export { connect, closeDbConnection, insertOneRecipe, findAll, removeOneRecipe }
 
