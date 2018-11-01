@@ -9,7 +9,11 @@ export async function addRecipe(recipe) {
 
     var params = {
         Item: {
-            'title': { S: recipe.title }
+            'title': { S: recipe.title },
+            'preparations': { S: recipe.preparations },
+            'ingredients': { S: recipe.ingredients },
+            'title': { S: recipe.title },
+            'author': { S: recipe.author}
         },
         TableName: "recipes"
     };

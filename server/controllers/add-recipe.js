@@ -1,12 +1,16 @@
-import { insertOneRecipe } from "./../config/mongoose"
+import * as domain from "./../domain/add-recipe"
 
-const addRecipe = async (req, res, dbo) => {
+export async function addRecipe (req) {
     const recipe = req.body
-    const insert = await insertOneRecipe(dbo, recipe)
-    return { status: 200, data: insert.ops }
+    const insertResult = await domain.addRecipe(recipe)
+    if(!insertResult.ok){
+        return {
+            status: 500
+        }
+    }
+    return { status: 200 }
 }
 
-export { addRecipe }
 
 
 
