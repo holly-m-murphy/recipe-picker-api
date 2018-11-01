@@ -1,32 +1,34 @@
 import AWS from "aws-sdk"
 
-export async function fetchRecipes() {
+export async function addRecipe(recipe) {
     // Set the region 
     AWS.config.update({ region: 'us-east-1' });
 
     // Create the DynamoDB service object
     const ddb = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
 
-    const params = {
-        TableName: 'recipes'
+    var params = {
+        Item: {
+            'title': { S: recipe.title }
+        },
+        TableName: "recipes"
     };
 
     return new Promise((resolve, reject) => {
-        ddb.scan(params, (err, data) => {
+        ddb.putItem(params, (err, data) => {
             if (err) {
-                console.log(`The dynamo scan resulted in an error: `, err)
+                console.log(`The dynamo putItem resulted in an error: `, err)
                 resolve({
                     ok: false,
                     reason: err
                 })
             } else {
                 resolve({
-                    ok: true, recipes: data.Items
+                    ok: true
                 })
             }
         })
     })
-
 }
 
 

@@ -12,21 +12,12 @@ module.exports = function (app) {
 
     })
     app.post('/add-recipe', async function (req, res) {
-        const response = await addCntrl.addRecipe(req, res, app.locals.db.dbo)
-        await app.locals.db.client.close((err, res) => {
-
-        })
+        const response = await addCntrl.addRecipe(req)
+        res.send(response)
 
     }),
         app.get('/find-all', async function (req, res) {
             const response = await findCntrl.findAll(req, res, app.locals.db.dbo)
-
-
-            await app.locals.db.client.close((err, res) => {
-
-
-
-            })
             res.send(response)
         }),
         app.get('/fetch-recipes', async function (req, res) {
