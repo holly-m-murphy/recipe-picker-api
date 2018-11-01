@@ -30,8 +30,8 @@ module.exports = function (app) {
             res.send(response)
         }),
         app.get('/fetch-recipes', async function (req, res) {
-            const response = await recipesCntrl.fetchRecipes(req, res, app.locals.db.dbo)
-            console.log(`response in routes: `, response)
+            const response = await recipesCntrl.fetchRecipes(req, res)
+            console.log(`response in routes: `, response.body)
             res.send(response)
         }),
         app.delete('/remove-recipe', async function (req, res) {

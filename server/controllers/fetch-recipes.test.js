@@ -1,14 +1,10 @@
 import { fetchRecipes } from "./fetch-recipes"
 
 describe("fetch-recipes", async () => {
-    it("should return all recipes from db", async () => {
-        const huhcb = (err, data) => {
-            expect(data.Items.length).toEqual(3)
-            expect(data.Items[0].title).toEqual({ "S": "Instant Pot Cauliflower and Butternut Thai Curry" })
-            expect(data.Items[0].author).toEqual({ "S": "OhSheGlows.com (Angela)" })
-
-        }
-        const result = fetchRecipes({}, {}, {}, huhcb)
-
+    it("should return a 200 for a successful response with the recipes", async () => {
+        const result = await fetchRecipes();
+        expect(result.status).toEqual(200);
+        expect(result.body.recipes.length).toBeGreaterThan(2);
     })
 })
+
