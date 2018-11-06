@@ -28,9 +28,9 @@ app.set('view engine', 'ejs')
 require('./server/config/routes.js')(app)
 
 
-app.listen(8000, function () {
+app.listen(8081, function () {
 
-    console.log('server listening on 8000')
+    console.log('server listening on 8081')
 
 })
 
